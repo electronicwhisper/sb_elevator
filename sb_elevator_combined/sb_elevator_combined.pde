@@ -1,11 +1,10 @@
-import processing.video.*;
 
 // video settings
-// video is brought in via screen capture (see getScreen)
+// video image is brought in via screen capture (see getScreen)
 PImage video;
 int vWidth = screen.width;
 int vHeight = screen.height;
-boolean paused = false; // press p to play/pause
+boolean paused = false; // toggle play/pause with p
 
 // view settings
 // move around with w-a-s-d, zoom in/out with +/-
@@ -16,14 +15,17 @@ int viewScale = 1;
 // pixel trackers
 // switch focus with < >
 // move the tracker around with i-j-k-l
+// move the tracker to the center of the viewport with c
+// save all the trackers with z
 PixelTracker[] pixelTrackers;
-int pixelTrackerTotal = 64;
 int pixelTrackerFocus = 0;
+
+
 
 void setup() {
   size(320, 240);
   
-//  pixelTrackers = new PixelTracker[pixelTrackerTotal];
+//  pixelTrackers = new PixelTracker[64];
 //  for (int i = 0; i < pixelTrackers.length; i++) {
 //    pixelTrackers[i] = (new PixelTracker(100, 100));
 //  }
@@ -33,13 +35,19 @@ void setup() {
   textFont(font); 
 }
 
+
+
 void draw() {
     if (!paused) video = getScreen();
     
+    // draw the video image to the viewport
     copy(video, viewX, viewY, (int) (width/(float) viewScale), (int) (height/(float) viewScale), 0, 0, width, height);
     
+    // draw the currently selected pixelTracker
     pixelTrackers[pixelTrackerFocus].draw(pixelTrackerFocus, video);
 }
+
+
 
 void keyTyped() {
   if (key == 'p') paused = !paused;
@@ -55,6 +63,12 @@ void keyTyped() {
   else if (key == 'k') pixelTrackers[pixelTrackerFocus].y++;
   else if (key == 'j') pixelTrackers[pixelTrackerFocus].x--;
   else if (key == 'l') pixelTrackers[pixelTrackerFocus].x++;
+  else if (key == 'c') {
+    int x = viewX + (int) (width/(float) viewScale/2.0);
+    int y = viewY + (int) (height/(float) viewScale/2.0);
+    pixelTrackers[pixelTrackerFocus].x = x;
+    pixelTrackers[pixelTrackerFocus].y = y;
+  }
   else if (key == 'z') savePixelTrackers();
   
   
@@ -66,6 +80,8 @@ void keyTyped() {
   // constrain pixelTrackerFocus
   pixelTrackerFocus = (pixelTrackerFocus + pixelTrackers.length) % pixelTrackers.length;
 }
+
+
 
 void savePixelTrackers() {
   String[] output = new String[pixelTrackers.length];
