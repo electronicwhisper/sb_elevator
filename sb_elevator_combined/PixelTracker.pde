@@ -4,7 +4,7 @@ class PixelTracker {
     x = nx;
     y = ny;
   }
-  void draw(int i, Capture video) {
+  void draw(int i, PImage video) {
     // figure out where the PixelTracker is in the viewport
     int dx = (x - viewX) * viewScale;
     int dy = (y - viewY) * viewScale;
