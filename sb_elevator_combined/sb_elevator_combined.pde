@@ -38,7 +38,11 @@ void setup() {
 
 
 void draw() {
-    if (!paused) video = getScreen();
+    if (!paused) {
+      video = getScreen();
+      // do computer vision
+      updateElevators();
+    }
     
     // draw the video image to the viewport
     copy(video, viewX, viewY, (int) (width/(float) viewScale), (int) (height/(float) viewScale), 0, 0, width, height);
@@ -64,6 +68,7 @@ int extractSevenSegment(int start) {
   
   int convert = -1;
   if (total == 0x3f) convert = 0;
+  else if (total == 0) convert = 0;
   else if (total == 0x06) convert = 1;
   else if (total == 0x5b) convert = 2;
   else if (total == 0x4f) convert = 3;
@@ -78,6 +83,28 @@ int extractSevenSegment(int start) {
 }
 
 
+int[] elevatorFloors = {-1, -1, -1, -1};
+void updateElevator(int elevator, int d1, int d2) {
+  int e1 = extractSevenSegment(d1);
+  int e2 = extractSevenSegment(d2);
+  if (e1 != -1 && e2 != -1) {
+    int fl = e1 * 10 + e2;
+    if (elevatorFloors[elevator] != fl) {
+      logFloor(elevator+1, fl);
+    }
+    elevatorFloors[elevator] = fl;
+  }
+}
+void updateElevators() {
+  updateElevator(0, 0, 8);
+  updateElevator(1, 16, 24);
+  updateElevator(2, 32, 40);
+  updateElevator(3, 48, 56);
+}
+
+
+
+
 
 void mousePressed() {
   // report the seven segments
@@ -86,9 +113,6 @@ void mousePressed() {
   println("elevator 2: " + extractSevenSegment(16) + " " + extractSevenSegment(24));
   println("elevator 3: " + extractSevenSegment(32) + " " + extractSevenSegment(40));
   println("elevator 4: " + extractSevenSegment(48) + " " + extractSevenSegment(56));
-  
-  logData("" + millis());
-  logFloor(4, 14);
 }
 
 

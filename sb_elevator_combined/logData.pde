@@ -16,5 +16,5 @@ long systemTime() {
 }
 
 void logFloor(int elevator, int fl) {
-  logData("{type:\"floor\",timestamp:"+systemTime()+",elevator:"+elevator+",floor"+fl+"}");
+  logData("{type:\"floor\",timestamp:"+systemTime()+",elevator:"+elevator+",floor:"+fl+"}");
 }
