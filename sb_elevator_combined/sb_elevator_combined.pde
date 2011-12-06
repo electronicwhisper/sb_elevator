@@ -48,6 +48,48 @@ void draw() {
 }
 
 
+int brightnessThreshold = 220;
+int extractSevenSegment(int start) {
+  // extracts a seven segment display looking at pixelTrackers starting at index start
+  
+  // go through the PixelTracker's, testing brightness, accumulating a binary representation of the seven-segment
+  // http://en.wikipedia.org/wiki/Seven-segment_display#Numbers_to_7-segment-code
+  int total = 0, multiplier = 1;
+  for (int i = start; i < start+7; i++) {
+    if (pixelTrackers[i].getBrightness() > brightnessThreshold) {
+      total += multiplier;
+    }
+    multiplier *= 2;
+  }
+  
+  int convert = -1;
+  if (total == 0x3f) convert = 0;
+  else if (total == 0x06) convert = 1;
+  else if (total == 0x5b) convert = 2;
+  else if (total == 0x4f) convert = 3;
+  else if (total == 0x66) convert = 4;
+  else if (total == 0x6d) convert = 5;
+  else if (total == 0x7d) convert = 6;
+  else if (total == 0x07) convert = 7;
+  else if (total == 0x7f) convert = 8;
+  else if (total == 0x6f) convert = 9;
+  
+  return convert;
+}
+
+
+
+void mousePressed() {
+  // report the seven segments
+  println("");
+  println("elevator 1: " + extractSevenSegment(0) + " " + extractSevenSegment(8));
+  println("elevator 2: " + extractSevenSegment(16) + " " + extractSevenSegment(24));
+  println("elevator 3: " + extractSevenSegment(32) + " " + extractSevenSegment(40));
+  println("elevator 4: " + extractSevenSegment(48) + " " + extractSevenSegment(56));
+  
+}
+
+
 
 void keyTyped() {
   if (key == 'p') paused = !paused;
