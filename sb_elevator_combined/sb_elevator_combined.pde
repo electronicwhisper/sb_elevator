@@ -38,17 +38,20 @@ void setup() {
 
 
 void draw() {
-    if (!paused) {
-      video = getScreen();
-      // do computer vision
-      updateElevators();
-    }
+  if (!paused) {
+    video = getScreen();
+  }
+  
+  // draw the video image to the viewport
+  copy(video, viewX, viewY, (int) (width/(float) viewScale), (int) (height/(float) viewScale), 0, 0, width, height);
+
+  if (!paused) {
+    // do computer vision
+    updateElevators();
+  }
     
-    // draw the video image to the viewport
-    copy(video, viewX, viewY, (int) (width/(float) viewScale), (int) (height/(float) viewScale), 0, 0, width, height);
-    
-    // draw the currently selected pixelTracker
-    pixelTrackers[pixelTrackerFocus].draw(pixelTrackerFocus, video);
+  // draw the currently selected pixelTracker
+  pixelTrackers[pixelTrackerFocus].draw(pixelTrackerFocus, video);
 }
 
 
@@ -93,6 +96,13 @@ void updateElevator(int elevator, int d1, int d2) {
       logFloor(elevator+1, fl);
     }
     elevatorFloors[elevator] = fl;
+    // draw the extracted floor to the viewport, for debugging
+    int x = pixelTrackers[d1].x;
+    int y = pixelTrackers[d1].y;
+    int dx = (x - viewX) * viewScale;
+    int dy = (y - viewY) * viewScale;
+    fill(255,0,0);
+    text(fl, dx, dy);
   }
 }
 void updateElevators() {
