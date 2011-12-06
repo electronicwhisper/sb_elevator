@@ -87,7 +87,11 @@ void mousePressed() {
   println("elevator 3: " + extractSevenSegment(32) + " " + extractSevenSegment(40));
   println("elevator 4: " + extractSevenSegment(48) + " " + extractSevenSegment(56));
   
+  logData("" + millis());
+  logFloor(4, 14);
 }
+
+
 
 
 
