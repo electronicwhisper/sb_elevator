@@ -1,0 +1,4 @@
+{type:"floor",timestamp:1323211059296,elevator:1,floor:0}
+{type:"floor",timestamp:1323211059312,elevator:2,floor:1}
+{type:"floor",timestamp:1323211059312,elevator:3,floor:13}
+{type:"floor",timestamp:1323211059312,elevator:4,floor:1}

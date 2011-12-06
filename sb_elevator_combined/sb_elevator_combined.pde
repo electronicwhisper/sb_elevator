@@ -55,7 +55,7 @@ void draw() {
 }
 
 
-int brightnessThreshold = 220;
+int brightnessThreshold = 235;
 int extractSevenSegment(int start) {
   // extracts a seven segment display looking at pixelTrackers starting at index start
   
@@ -92,6 +92,10 @@ void updateElevator(int elevator, int d1, int d2) {
   int e2 = extractSevenSegment(d2);
   if (e1 != -1 && e2 != -1) {
     int fl = e1 * 10 + e2;
+    // check basement
+    if (fl == 3 && pixelTrackers[d2 + 7].getBrightness() > brightnessThreshold) {
+      fl = 0;
+    }
     if (elevatorFloors[elevator] != fl) {
       logFloor(elevator+1, fl);
     }
