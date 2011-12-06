@@ -80,7 +80,7 @@ int extractSevenSegment(int start) {
   else if (total == 0x7d) convert = 6;
   else if (total == 0x07) convert = 7;
   else if (total == 0x7f) convert = 8;
-  else if (total == 0x6f) convert = 9;
+  else if (total == 0x67) convert = 9; // note we use a 9 without a "stem" at the bottom, i.e. not 0x6F
   
   return convert;
 }
