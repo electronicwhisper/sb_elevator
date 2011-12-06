@@ -23,7 +23,7 @@ int pixelTrackerFocus = 0;
 
 
 void setup() {
-  size(320, 240);
+  size(800, 600);
   
 //  pixelTrackers = new PixelTracker[64];
 //  for (int i = 0; i < pixelTrackers.length; i++) {

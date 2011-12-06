@@ -11,7 +11,7 @@ String fulldate() {
 }
 long systemTime() {
   Date d = new Date();
-  long current = d.getTime()/1000;
+  long current = d.getTime();
   return current;
 }
 
