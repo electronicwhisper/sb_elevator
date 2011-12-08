@@ -9,8 +9,9 @@ boolean[] movement = {false, false, false, false}; // whether there is movement 
 void trackMovement(PImage frame) {
   if (oldFrame == null) oldFrame = new int[frame.width*frame.height];
   
-  int[] quadrants = {0,0,0,0};
+  int[] quadrants = {0,0,0,0}; // keep track of # of changed pixels in each quadrant
   
+  // loop through all the pixels
   for (int x = 0; x < frame.width; x+=skip) {
     for (int y = 0; y < frame.height; y+=skip) {
       int i = y*frame.width + x;
@@ -40,8 +41,10 @@ void trackMovement(PImage frame) {
     // log movement change events
     if (!movement[i] && currentMillis == lastSeen[i]) {
       movement[i] = true;
+      logPeople(i+1, movement[i]);
     } else if (movement[i] && currentMillis - lastSeen[i] > timerToLog) {
       movement[i] = false;
+      logPeople(i+1, movement[i]);
     }
     
     // for debugging

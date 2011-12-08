@@ -1,11 +1,14 @@
 PrintWriter output;
 
 void logData(String json) {
+  // log to console
+  println(json);
+  // log to text file
   if (output == null) output = createWriter("data/log-"+fulldate()+".txt");
   output.println(json);
   output.flush();
+  // log to gabby's server
   loadStrings("http://levinegabriella.com/sensitive_buildings/elevator_data.php?data="+json);
-  
 }
 
 String fulldate() {
@@ -19,4 +22,8 @@ long systemTime() {
 
 void logFloor(int elevator, int fl) {
   logData("{type:\"floor\",timestamp:"+systemTime()+",elevator:"+elevator+",floor:"+fl+"}");
+}
+
+void logPeople(int elevator, boolean people) {
+  logData("{type:\"people\",timestamp:"+systemTime()+",elevator:"+elevator+",people:"+people+"}");
 }
