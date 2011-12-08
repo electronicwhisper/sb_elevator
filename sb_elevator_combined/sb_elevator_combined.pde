@@ -55,7 +55,7 @@ void draw() {
 }
 
 
-int brightnessThreshold = 235;
+int brightnessThreshold = 200;
 int extractSevenSegment(int start) {
   // extracts a seven segment display looking at pixelTrackers starting at index start
   
