@@ -48,6 +48,7 @@ void draw() {
   if (!paused) {
     // do computer vision
     updateElevators();
+    trackMovement(video);
   }
     
   // draw the currently selected pixelTracker

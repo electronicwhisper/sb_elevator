@@ -1,9 +1,9 @@
 PrintWriter output;
 
 void logData(String json) {
-  if (output == null) output = createWriter("data/log-"+fulldate()+".txt");
-  output.println(json);
-  output.flush();
+//  if (output == null) output = createWriter("data/log-"+fulldate()+".txt");
+//  output.println(json);
+//  output.flush();
 }
 
 String fulldate() {
