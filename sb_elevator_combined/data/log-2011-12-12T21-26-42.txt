@@ -1,0 +1,8 @@
+{type:"floor",timestamp:1323743202718,elevator:1,floor:0}
+{type:"floor",timestamp:1323743204031,elevator:2,floor:88}
+{type:"floor",timestamp:1323743206062,elevator:3,floor:0}
+{type:"floor",timestamp:1323743208265,elevator:4,floor:88}
+{type:"people",timestamp:1323743209796,elevator:1,people:true}
+{type:"people",timestamp:1323743211765,elevator:2,people:true}
+{type:"people",timestamp:1323743213765,elevator:3,people:true}
+{type:"people",timestamp:1323743215765,elevator:4,people:true}

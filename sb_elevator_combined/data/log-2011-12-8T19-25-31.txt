@@ -1,0 +1,15 @@
+{type:"floor",timestamp:1323390331609,elevator:1,floor:7}
+{type:"floor",timestamp:1323390331968,elevator:2,floor:9}
+{type:"floor",timestamp:1323390332125,elevator:3,floor:5}
+{type:"floor",timestamp:1323390332265,elevator:4,floor:1}
+{type:"people",timestamp:1323390332500,elevator:1,people:true}
+{type:"people",timestamp:1323390332656,elevator:2,people:true}
+{type:"people",timestamp:1323390332812,elevator:3,people:true}
+{type:"people",timestamp:1323390332968,elevator:4,people:true}
+{type:"floor",timestamp:1323390333437,elevator:3,floor:3}
+{type:"floor",timestamp:1323390334625,elevator:1,floor:8}
+{type:"floor",timestamp:1323390334781,elevator:3,floor:2}
+{type:"floor",timestamp:1323390335640,elevator:3,floor:1}
+{type:"people",timestamp:1323390335812,elevator:1,people:false}
+{type:"people",timestamp:1323390335984,elevator:3,people:false}
+{type:"people",timestamp:1323390336140,elevator:4,people:false}
