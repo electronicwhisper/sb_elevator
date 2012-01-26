@@ -1,0 +1,27 @@
+# making CV better / more resilient
+
+make a custom getBrightness
+	for analysis, make it output the exact colors of every on/off segment
+	transform brightness into color space (instead of analyzing a specific channel or the average)
+	factor brightnessThreshold into PixelTracker
+
+figure out when there's an error
+	when a floor is greater than 26
+	when a floor jumps more than 2 (3?)
+	log the image of this, and which elevator had the issue
+
+make a way to scrub through the debugged images (in debug mode)
+
+
+
+
+# integrating real time
+
+make a server to post data to
+	iDigi or
+	Heroku with Mongo
+
+post data asynchronously
+	http://www.learningprocessing.com/tutorials/simpleml/
+
+make the server get data with a "since" parameter (for polling from the client)

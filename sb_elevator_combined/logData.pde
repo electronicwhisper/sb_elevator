@@ -3,12 +3,15 @@ PrintWriter output;
 void logData(String json) {
   // log to console
   println(json);
-  // log to text file
-  if (output == null) output = createWriter("data/log-"+fulldate()+".txt");
-  output.println(json);
-  output.flush();
-  // log to gabby's server
-  loadStrings("http://levinegabriella.com/sensitive_buildings/elevator_data.php?data="+json);
+  
+  if (!debugMode) {
+    // log to text file
+    if (output == null) output = createWriter("data/log-"+fulldate()+".txt");
+    output.println(json);
+    output.flush();
+    // log to gabby's server
+    loadStrings("http://levinegabriella.com/sensitive_buildings/elevator_data.php?data="+json);
+  }
 }
 
 String fulldate() {

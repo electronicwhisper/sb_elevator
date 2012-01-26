@@ -5,8 +5,9 @@ class PixelTracker {
     y = ny;
   }
   int getBrightness() {
+    int pixelColor = video.pixels[y*video.width+x];
     //return (int) brightness(video.pixels[y*video.width+x]);
-    return (int) green(video.pixels[y*video.width+x]);
+    return (int) green(pixelColor);
   }
   void draw(int i, PImage video) {
     // figure out where the PixelTracker is in the viewport

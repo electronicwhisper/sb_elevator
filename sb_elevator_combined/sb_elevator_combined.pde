@@ -1,3 +1,5 @@
+boolean debugMode = true;
+
 
 // video settings
 // video image is brought in via screen capture (see getScreen)
@@ -136,6 +138,7 @@ void mousePressed() {
 
 void keyTyped() {
   if (key == 'p') paused = !paused;
+  else if (key == 'm') debugMode = !debugMode;
   else if (key == 'w') viewY-=4;
   else if (key == 's') viewY+=4;
   else if (key == 'a') viewX-=4;
