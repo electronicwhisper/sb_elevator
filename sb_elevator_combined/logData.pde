@@ -24,9 +24,11 @@ long systemTime() {
 }
 
 void logFloor(int elevator, int fl) {
+  oscSend("/elevator/floor", elevator, fl);
   logData("{type:\"floor\",timestamp:"+systemTime()+",elevator:"+elevator+",floor:"+fl+"}");
 }
 
 void logPeople(int elevator, boolean people) {
+  oscSend("/elevator/people", elevator, int(people));
   logData("{type:\"people\",timestamp:"+systemTime()+",elevator:"+elevator+",people:"+people+"}");
 }
