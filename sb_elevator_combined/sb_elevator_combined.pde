@@ -51,6 +51,9 @@ void draw() {
     // do computer vision
     updateElevators();
     trackMovement(video);
+    
+    // for debugging, periodically save the frame
+    autoSnapshot();
   }
     
   // draw the currently selected pixelTracker
@@ -158,6 +161,7 @@ void keyTyped() {
     pixelTrackers[pixelTrackerFocus].y = y;
   }
   else if (key == 'z') savePixelTrackers();
+  else if (key == 'v') saveSnapshot();
   
   
   // constrain view
