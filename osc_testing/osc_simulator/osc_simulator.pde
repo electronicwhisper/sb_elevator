@@ -2,7 +2,7 @@ import oscP5.*;
 import netP5.*;
 
 // if not on same machine, change this to the IP of the receiver
-String sendAddress = "127.0.0.1";
+String sendAddress = "192.168.34.60";
 
 OscP5 oscP5;
 NetAddress myRemoteLocation;

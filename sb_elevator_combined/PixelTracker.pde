@@ -5,9 +5,20 @@ class PixelTracker {
     y = ny;
   }
   int getBrightness() {
-    int pixelColor = video.pixels[y*video.width+x];
-    //return (int) brightness(video.pixels[y*video.width+x]);
-    return (int) green(pixelColor);
+    // sample the maximum value in a 3x3 area
+    int maxBrightness = 0;
+    for (int dx = -1; dx <= 1; dx++) {
+      for (int dy = -1; dy <= 1; dy++) {
+        int pixelColor = video.pixels[(y+dy)*video.width + (x+dx)];
+        int bright = (int) green(pixelColor);
+        maxBrightness = max(bright, maxBrightness);
+      }
+    }
+    return maxBrightness;
+    
+    // int pixelColor = video.pixels[y*video.width+x];
+    // //return (int) brightness(video.pixels[y*video.width+x]);
+    // return (int) green(pixelColor);
   }
   void draw(int i, PImage video) {
     // figure out where the PixelTracker is in the viewport
