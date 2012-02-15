@@ -52,8 +52,7 @@ void draw() {
     updateElevators();
     trackMovement(video);
     
-    // for debugging, periodically save the frame
-    autoSnapshot();
+    autoupdate();
   }
     
   // draw the currently selected pixelTracker
