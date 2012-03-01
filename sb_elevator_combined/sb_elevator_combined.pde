@@ -33,6 +33,8 @@ void setup() {
 //  }
   loadPixelTrackers();
   
+  loadNextSnapshot();
+  
   PFont font = loadFont("Monaco-12.vlw"); 
   textFont(font); 
 }
@@ -40,8 +42,12 @@ void setup() {
 
 
 void draw() {
-  if (!paused) {
-    video = getScreen();
+  if (debugMode) {
+    
+  } else {
+    if (!paused) {
+      video = getScreen();
+    }
   }
   
   // draw the video image to the viewport
@@ -52,7 +58,7 @@ void draw() {
     updateElevators();
     trackMovement(video);
     
-    autoupdate();
+    if (!debugMode) autoupdate();
   }
     
   // draw the currently selected pixelTracker
@@ -161,6 +167,7 @@ void keyTyped() {
   }
   else if (key == 'z') savePixelTrackers();
   else if (key == 'v') saveSnapshot();
+  else if (key == 'n') loadNextSnapshot();
   
   
   // constrain view
@@ -191,3 +198,57 @@ void loadPixelTrackers() {
   }
 }
 
+
+
+
+
+
+
+
+
+
+int snapshotNum = -1;
+void loadNextSnapshot() {
+  String snapshots[] = listFileNames(sketchPath+"/data/snapshots");
+  println(snapshots);
+  snapshotNum = (snapshotNum + 1) % snapshots.length;
+  video = loadImage("data/snapshots/"+snapshots[snapshotNum]);
+}
+
+
+
+
+// This function returns all the files in a directory as an array of Strings  
+String[] listFileNames(String dir) {
+  File file = new File(dir);
+  if (file.isDirectory()) {
+    String names[] = file.list(new ImageFilenameFilter());
+    return names;
+  } else {
+    // If it's not a directory
+    return null;
+  }
+}
+
+import java.io.*;
+
+/**
+ * A class that implements the Java FileFilter interface.
+ */
+public class ImageFilenameFilter implements FilenameFilter
+{
+  private final String[] okFileExtensions = 
+    new String[] {"jpg", "png", "gif"};
+
+  public boolean accept(File dir, String name)
+  {
+    for (String extension : okFileExtensions)
+    {
+      if (name.toLowerCase().endsWith(extension))
+      {
+        return true;
+      }
+    }
+    return false;
+  }
+}
